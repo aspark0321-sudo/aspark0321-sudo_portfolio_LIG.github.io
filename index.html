@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>박소현 | R&D 연구기획 Portfolio</title>
+
+  <style>
+    /* =========================================================
+       기본 설정
+    ========================================================= */
+    :root {
+      --navy: #0b1f3a;
+      --navy2: #16365c;
+      --blue: #2d5b88;
+      --sky: #eaf2f9;
+      --light: #f5f7fa;
+      --line: #dce4ed;
+      --text: #172033;
+      --muted: #667085;
+      --white: #ffffff;
+      --accent: #3f6f9f;
+      --shadow: 0 10px 30px rgba(11, 31, 58, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        "Pretendard",
+        "Noto Sans KR",
+        "Apple SD Gothic Neo",
+        Arial,
+        sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+
+      /* 한글 단어가 중간에서 끊기는 현상 방지 */
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 95px 0;
+      scroll-margin-top: 80px;
+    }
+
+    .section-label {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.25;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 42px;
+    }
+
+    /* =========================================================
+       네비게이션
+    ========================================================= */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid rgba(220, 228, 237, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: -0.03em;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-menu a {
+      color: #475467;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .nav-menu a:hover {
+      color: var(--navy);
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+    .hero {
+      background:
+        linear-gradient(135deg, #f7f9fc 0%, #ffffff 55%, #eef4fa 100%);
+      padding: 80px 0 90px;
+    }
+
+    .hero-top {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 65px;
+    }
+
+    .hero-name {
+      color: var(--navy);
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title {
+      max-width: 780px;
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: 1.2;
+      letter-spacing: -0.055em;
+      font-weight: 900;
+      margin-bottom: 25px;
+    }
+
+    .hero-title .highlight {
+      color: var(--blue);
+    }
+
+    .hero-desc {
+      max-width: 760px;
+      color: #475467;
+      font-size: 17px;
+      line-height: 1.85;
+    }
+
+    /* 프로필 사진 */
+    .profile-photo {
+      width: 220px;
+      height: 270px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #e8edf3;
+      border: 1px solid var(--line);
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-photo.no-image::before {
+      content: "PROFILE PHOTO";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #98a2b3;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    /* =========================================================
+       타임라인
+    ========================================================= */
+    .timeline-wrap {
+      position: relative;
+      padding: 0 10px;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 10px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-right: 22px;
+    }
+
+    .timeline-dot {
+      width: 20px;
+      height: 20px;
+      background: var(--white);
+      border: 5px solid var(--navy);
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 20px;
+    }
+
+    .timeline-date {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .timeline-org {
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.45;
+      margin-bottom: 4px;
+    }
+
+    .timeline-role {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* =========================================================
+       공통 카드
+    ========================================================= */
+    .career-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 34px;
+    }
+
+    .career-head {
+      padding: 30px 34px 24px;
+      background: #fbfcfe;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .career-period {
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .career-title {
+      font-size: 25px;
+      line-height: 1.35;
+      font-weight: 850;
+      letter-spacing: -0.035em;
+    }
+
+    .career-position {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .career-body {
+      padding: 30px 34px 34px;
+    }
+
+    .career-content {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .sub-title {
+      font-size: 15px;
+      font-weight: 850;
+      color: var(--navy);
+      margin-bottom: 13px;
+      padding-left: 12px;
+      border-left: 3px solid var(--blue);
+    }
+
+    .career-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .career-list li {
+      position: relative;
+      padding-left: 16px;
+      font-size: 14px;
+      color: #344054;
+      line-height: 1.65;
+    }
+
+    .career-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .performance-box {
+      margin-top: 28px;
+      padding: 22px 24px;
+      background: var(--sky);
+      border-radius: 14px;
+    }
+
+    .performance-box .sub-title {
+      margin-bottom: 12px;
+    }
+
+    /* =========================================================
+       경력 사진 3개
+    ========================================================= */
+    .career-images {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .image-title {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      color: var(--navy);
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .work-photo {
+      height: 190px;
+      background: #eef2f6;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .work-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .work-photo.no-image::before {
+      content: "WORK PHOTO";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #98a2b3;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    /* =========================================================
+       R&D LIFECYCLE
+       → 세로가 아니라 가로 5단계
+    ========================================================= */
+    .lifecycle-section {
+      background: var(--light);
+    }
+
+    .lifecycle {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 35px;
+    }
+
+    .life-step {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px 17px;
+      min-height: 155px;
+      position: relative;
+    }
+
+    .life-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue);
+      font-size: 20px;
+      font-weight: 800;
+      z-index: 3;
+    }
+
+    .life-number {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .life-title {
+      font-size: 16px;
+      font-weight: 850;
+      margin-bottom: 8px;
+    }
+
+    .life-desc {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       핵심역량
+       → 여백 줄이고 한 화면에 compact하게
+    ========================================================= */
+    .competency-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 28px;
+    }
+
+    .competency-intro p {
+      max-width: 580px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .competency-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .competency-card {
+      min-height: 210px;
+      padding: 22px 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      transition: 0.2s ease;
+    }
+
+    .competency-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: #c5d4e3;
+    }
+
+    .competency-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--navy);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .competency-title {
+      font-size: 16px;
+      font-weight: 850;
+      margin-bottom: 10px;
+      color: var(--navy);
+    }
+
+    .competency-text {
+      color: #667085;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    /* =========================================================
+       연구기획 방식
+    ========================================================= */
+    .planning-flow {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .flow-item {
+      position: relative;
+      padding: 18px 14px;
+      background: #f8fafc;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid var(--line);
+    }
+
+    .flow-item:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -17px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue);
+      font-weight: 900;
+      z-index: 2;
+    }
+
+    .flow-item strong {
+      display: block;
+      color: var(--navy);
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .flow-item span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* =========================================================
+       인재상 연결
+    ========================================================= */
+    .fit-section {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .fit-section .section-label {
+      color: #9fc0df;
+    }
+
+    .fit-section .section-title {
+      color: var(--white);
+    }
+
+    .fit-section .section-desc {
+      color: #c6d0dc;
+    }
+
+    .fit-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .fit-card {
+      padding: 21px 17px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 13px;
+    }
+
+    .fit-card strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .fit-card span {
+      color: #cbd5e1;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       대외활동
+    ========================================================= */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .activity-card {
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--white);
+    }
+
+    .activity-date {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .activity-title {
+      font-size: 18px;
+      font-weight: 850;
+      margin-bottom: 15px;
+    }
+
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .activity-list li {
+      padding-left: 15px;
+      position: relative;
+      color: #475467;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .activity-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    /* =========================================================
+       마무리
+    ========================================================= */
+    .closing {
+      padding: 100px 0 70px;
+      text-align: center;
+      background: #f7f9fc;
+    }
+
+    .closing-title {
+      max-width: 750px;
+      margin: 0 auto 18px;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.4;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .closing-desc {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* =========================================================
+       사이트맵
+    ========================================================= */
+    .sitemap-wrap {
+      border-top: 1px solid var(--line);
+      background: #f7f9fc;
+    }
+
+    .sitemap {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .sitemap summary {
+      cursor: pointer;
+      padding: 22px 20px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--navy);
+      list-style: none;
+      text-align: center;
+    }
+
+    .sitemap summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .sitemap summary::after {
+      content: " +";
+      color: var(--blue);
+    }
+
+    .sitemap[open] summary::after {
+      content: " −";
+    }
+
+    .sitemap-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding: 0 20px 25px;
+    }
+
+    .sitemap-links a {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .sitemap-links a:hover {
+      color: var(--navy);
+    }
+
+    footer {
+      padding: 22px;
+      text-align: center;
+      color: #98a2b3;
+      font-size: 11px;
+      background: #f7f9fc;
+    }
+
+    /* =========================================================
+       반응형
+    ========================================================= */
+    @media (max-width: 950px) {
+
+      .hero-top {
+        grid-template-columns: 1fr 180px;
+        gap: 35px;
+      }
+
+      .profile-photo {
+        width: 180px;
+        height: 225px;
+      }
+
+      .timeline {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 35px;
+      }
+
+      .timeline::before {
+        display: none;
+      }
+
+      .timeline-dot {
+        margin-bottom: 10px;
+      }
+
+      .lifecycle,
+      .competency-grid,
+      .fit-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .life-step:not(:last-child)::after,
+      .flow-item:not(:last-child)::after {
+        display: none;
+      }
+
+      .planning-flow {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .career-content {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 700px) {
+
+      section {
+        padding: 70px 0;
+      }
+
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .nav {
+        height: 62px;
+      }
+
+      .nav-menu {
+        gap: 12px;
+      }
+
+      .nav-menu a {
+        font-size: 11px;
+      }
+
+      .hero {
+        padding: 55px 0 65px;
+      }
+
+      .hero-top {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-photo {
+        width: 150px;
+        height: 185px;
+        order: -1;
+      }
+
+      .hero-title {
+        font-size: 34px;
+      }
+
+      .hero-desc {
+        font-size: 14px;
+      }
+
+      .timeline {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 20px 90px 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+
+      .timeline-dot {
+        margin: 0;
+      }
+
+      .timeline-date {
+        margin: 0;
+      }
+
+      .career-head,
+      .career-body {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .image-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .work-photo {
+        height: 210px;
+      }
+
+      .lifecycle,
+      .competency-grid,
+      .fit-grid,
+      .activity-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .planning-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .competency-intro {
+        display: block;
+      }
+
+      .competency-intro p {
+        margin-top: 15px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <!-- =========================================================
+       NAVIGATION
+  ========================================================= -->
+  <header>
+    <div class="container nav">
+
+      <a href="#home" class="logo">
+        SOHYUN PARK
+      </a>
+
+      <nav class="nav-menu">
+        <a href="#career">주요경력</a>
+        <a href="#lifecycle">R&D Lifecycle</a>
+        <a href="#competency">핵심역량</a>
+        <a href="#activity">대외활동</a>
+        <a href="#fit">직무 연결</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- =========================================================
+       HERO
+  ========================================================= -->
+  <main>
+
+    <section class="hero" id="home">
+
+      <div class="container">
+
+        <div class="hero-top">
+
+          <div class="hero-copy">
+
+            <div class="hero-name">
+              박소현
+            </div>
+
+            <h1 class="hero-title">
+              기술과 사업 정보를 구조화해<br>
+              <span class="highlight">R&D 과제의 방향과 실행을 연결</span>합니다.
+            </h1>
+
+            <p class="hero-desc">
+              한국연구재단에서 <strong>R&D 과제관리와 기술기획</strong>을,
+              CS Energy에서 <strong>신재생에너지 사업성 검토와 글로벌 시장분석</strong>을 경험했습니다.
+              복잡한 정보를 목적에 맞게 정리하고, 판단 기준을 구체화하는 연구기획 역량을 쌓아왔습니다.
+            </p>
+
+          </div>
+
+
+          <!-- 프로필 사진 -->
+          <div class="profile-photo">
+
+            <img
+              src="images/profile.jpg"
+              alt="박소현 프로필 사진"
+              onerror="this.style.display='none'; this.parentElement.classList.add('no-image');"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             EXPERIENCE TIMELINE
+        ====================================================== -->
+        <div class="timeline-wrap">
+
+          <div class="timeline">
+
+            <div class="timeline-item">
+
+              <div class="timeline-dot"></div>
+
+              <div class="timeline-date">
+                2026.04–2026.08
+              </div>
+
+              <div>
+                <div class="timeline-org">
+                  한국연구재단
+                </div>
+                <div class="timeline-role">
+                  국가전략본부 거대인프라방사선단<br>
+                  체험형 인턴
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+              <div class="timeline-dot"></div>
+
+              <div class="timeline-date">
+                2026.01–2026.03
+              </div>
+
+              <div>
+                <div class="timeline-org">
+                  CS Energy
+                </div>
+                <div class="timeline-role">
+                  미주지역 태양광 사업개발부<br>
+                  인턴
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+              <div class="timeline-dot"></div>
+
+              <div class="timeline-date">
+                2024.07–2024.08
+              </div>
+
+              <div>
+                <div class="timeline-org">
+                  충남대학교 연구실
+                </div>
+                <div class="timeline-role">
+                  김병관 교수 연구실<br>
+                  학부연구생
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+              <div class="timeline-dot"></div>
+
+              <div class="timeline-date">
+                2023.01–2023.12
+              </div>
+
+              <div>
+                <div class="timeline-org">
+                  충남대학교 공과대학
+                </div>
+                <div class="timeline-role">
+                  '이온' 학생회<br>
+                  홍보차장
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+              <div class="timeline-dot"></div>
+
+              <div class="timeline-date">
+                2023.05–2023.07
+              </div>
+
+              <div>
+                <div class="timeline-org">
+                  테트라팩
+                </div>
+                <div class="timeline-role">
+                  에코 서포터즈
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+              <div class="timeline-dot"></div>
+
+              <div class="timeline-date">
+                2022.05–2022.11
+              </div>
+
+              <div>
+                <div class="timeline-org">
+                  한국원자력연구원
+                </div>
+                <div class="timeline-role">
+                  안전문화 서포터즈
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         주요 경력
+    ========================================================= -->
+    <section id="career">
+
+      <div class="container">
+
+        <span class="section-label">
+          Career
+        </span>
+
+        <h2 class="section-title">
+          주요 경력
+        </h2>
+
+        <p class="section-desc">
+          R&D 과제관리부터 기술기획, 신재생에너지 사업성 검토까지 경험했습니다.
+        </p>
+
+
+        <!-- =====================================================
+             한국연구재단
+        ====================================================== -->
+        <article class="career-card">
+
+          <div class="career-head">
+
+            <div class="career-period">
+              2026.04 – 2026.08
+            </div>
+
+            <h3 class="career-title">
+              한국연구재단 국가전략본부 거대인프라방사선단
+            </h3>
+
+            <div class="career-position">
+              체험형 인턴
+            </div>
+
+          </div>
+
+
+          <div class="career-body">
+
+            <div class="career-content">
+
+              <div>
+
+                <h4 class="sub-title">
+                  주요 업무 및 역할
+                </h4>
+
+                <ul class="career-list">
+
+                  <li>
+                    연구과제 진행현황 및 업무 히스토리 리스트업과 향후 과제 추진계획 수립
+                  </li>
+
+                  <li>
+                    방사선 이종접합소재(접착제) RFP 기획 및 검토
+                  </li>
+
+                  <li>
+                    국가연구개발혁신법 및 원자력정책연구사업·연구기획과제 사업관리 기준 검토
+                  </li>
+
+                  <li>
+                    연구책임자 및 과학기술정보통신부 민원·문의사항 대응
+                  </li>
+
+                  <li>
+                    협약변경·연구비 집행·예산 검토 및 평가 관련 행정 지원
+                  </li>
+
+                  <li>
+                    IRIS 최종보고서 제출 및 접수 처리
+                  </li>
+
+                </ul>
+
+              </div>
+
+
+              <div>
+
+                <h4 class="sub-title">
+                  주요 성과
+                </h4>
+
+                <ul class="career-list">
+
+                  <li>
+                    방사선 이종접합소재 RFP 기획안 최종 수정·완성 및 사업공고
+                  </li>
+
+                  <li>
+                    원자력정책연구사업 1건 선정 및 8건 최종평가 기획·결과(안) 도출, 과기부 보고
+                  </li>
+
+                  <li>
+                    인프라구축 사업 최종평가 결과 정리 및 과기부 통보·보고
+                  </li>
+
+                  <li>
+                    과학기술분야 연구기획과제 1건 선정 및 기획·결과(안) 보고
+                  </li>
+
+                </ul>
+
+              </div>
+
+            </div>
+
+
+            <!-- 연구재단 사진 3장 -->
+            <div class="career-images">
+
+              <div class="image-title">
+                업무 및 활동 이미지
+              </div>
+
+              <div class="image-grid">
+
+                <div class="work-photo">
+                  <img
+                    src="images/nrf-1.jpg"
+                    alt="한국연구재단 업무 사진 1"
+                    onerror="this.style.display='none'; this.parentElement.classList.add('no-image');"
+                  >
+                </div>
+
+                <div class="work-photo">
+                  <img
+                    src="images/nrf-2.jpg"
+                    alt="한국연구재단 업무 사진 2"
+                    onerror="this.style.display='none'; this.parentElement.classList.add('no-image');"
+                  >
+                </div>
+
+                <div class="work-photo">
+                  <img
+                    src="images/nrf-3.jpg"
+                    alt="한국연구재단 업무 사진 3"
+                    onerror="this.style.display='none'; this.parentElement.classList.add('no-image');"
+                  >
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             CS ENERGY
+        ====================================================== -->
+        <article class="career-card">
+
+          <div class="career-head">
+
+            <div class="career-period">
+              2026.01 – 2026.03
+            </div>
+
+            <h3 class="career-title">
+              CS Energy 미주지역 태양광 사업개발부
+            </h3>
+
+            <div class="career-position">
+              인턴
+            </div>
+
+          </div>
+
+
+          <div class="career-body">
+
+            <div>
+
+              <h4 class="sub-title">
+                주요 업무 및 역할
+              </h4>
+
+              <ul class="career-list">
+
+                <li>
+                  미국 내 신재생에너지 태양광·BESS 프로젝트 개발 및 자산관리 업무 지원
+                </li>
+
+                <li>
+                  PVcase 활용 미국 주요 주(州) 개발 안건 부지 스크리닝
+                </li>
+
+                <li>
+                  계통여유·지가 등 부지선정기준 기반 태양광 사업 후보지 검토
+                </li>
+
+                <li>
+                  미국 신재생에너지 법안·규제 동향 모니터링 및 데이터베이스화
+                </li>
+
+                <li>
+                  BESS 전력 트레이딩·세제혜택·수익 및 계약구조 검토
+                </li>
+
+              </ul>
+
+            </div>
+
+
+            <div class="performance-box">
+
+              <h4 class="sub-title">
+                주요 성과
+              </h4>
+
+              <ul class="career-list">
+
+                <li>
+                  태양광 후보지 총 30건 검토 및 트래커 3건 구축
+                </li>
+
+                <li>
+                  미국 전력시장 구조 및 전력수익·계약구조 보고서 작성·발표
+                </li>
+
+                <li>
+                  MISO 계통 스터디 프로세스 분석·도식화 및 사업 검토 자료 작성
+                </li>
+
+                <li>
+                  IL 주 법안동향 데이터베이스 구축 및 태양광 사업성 검토
+                </li>
+
+              </ul>
+
+            </div>
+
+
+            <!-- CS Energy 사진 3장 -->
+            <div class="career-images">
+
+              <div class="image-title">
+                업무 및 활동 이미지
+              </div>
+
+              <div class="image-grid">
+
+                <div class="work-photo">
+                  <img
+                    src="images/cs-energy-1.jpg"
+                    alt="CS Energy 업무 사진 1"
+                    onerror="this.style.display='none'; this.parentElement.classList.add('no-image');"
+                  >
+                </div>
+
+                <div class="work-photo">
+                  <img
+                    src="images/cs-energy-2.jpg"
+                    alt="CS Energy 업무 사진 2"
+                    onerror="this.style.display='none'; this.parentElement.classList.add('no-image');"
+                  >
+                </div>
+
+                <div class="work-photo">
+                  <img
+                    src="images/cs-energy-3.jpg"
+                    alt="CS Energy 업무 사진 3"
+                    onerror="this.style.display='none'; this.parentElement.classList.add('no-image');"
+                  >
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             연구실
+        ====================================================== -->
+        <article class="career-card">
+
+          <div class="career-head">
+
+            <div class="career-period">
+              2024.07 – 2024.08
+            </div>
+
+            <h3 class="career-title">
+              충남대학교 김병관 교수 연구실
+            </h3>
+
+            <div class="career-position">
+              학부연구생
+            </div>
+
+          </div>
+
+
+          <div class="career-body">
+
+            <div class="career-content">
+
+              <div>
+
+                <h4 class="sub-title">
+                  주요 업무 및 역할
+                </h4>
+
+                <ul class="career-list">
+
+                  <li>
+                    바이오폴리머 기반 열전소재 데이터 특성표 구축
+                  </li>
+
+                  <li>
+                    소재별 합성조건·조성비·열전특성 데이터 분석 및 무기열전소재 비교
+                  </li>
+
+                  <li>
+                    TOBC 및 [EMIM][DCA] 소재 선정·실험설계
+                  </li>
+
+                  <li>
+                    연구 세미나 기반 실험설계안 공유 및 연구방향성 수립
+                  </li>
+
+                </ul>
+
+              </div>
+
+
+              <div>
+
+                <h4 class="sub-title">
+                  주요 성과
+                </h4>
+
+                <ul class="career-list">
+
+                  <li>
+                    Bacterial cellulose 기반 TOBC 및 [EMIM][DCA] 복합제 합성·열전연구 진행
+                  </li>
+
+                </ul>
+
+              </div>
+
+            </div>
+
+
+            <!-- 연구실 사진 3장 -->
+            <div class="career-images">
+
+              <div class="image-title">
+                연구 및 실험 이미지
+              </div>
+
+              <div class="image-grid">
+
+                <div class="work-photo">
+                  <img
+                    src="images/lab-1.jpg"
+                    alt="연구실 활동 사진 1"
+                    onerror="this.style.display='none'; this.parentElement.classList.add('no-image');"
+                  >
+                </div>
+
+                <div class="work-photo">
+                  <img
+                    src="images/lab-2.jpg"
+                    alt="연구실 활동 사진 2"
+                    onerror="this.style.display='none'; this.parentElement.classList.add('no-image');"
+                  >
+                </div>
+
+                <div class="work-photo">
+                  <img
+                    src="images/lab-3.jpg"
+                    alt="연구실 활동 사진 3"
+                    onerror="this.style.display='none'; this.parentElement.classList.add('no-image');"
+                  >
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         R&D LIFECYCLE
+         가로 5단계
+    ========================================================= -->
+    <section class="lifecycle-section" id="lifecycle">
+
+      <div class="container">
+
+        <span class="section-label">
+          R&D Lifecycle
+        </span>
+
+        <h2 class="section-title">
+          R&D 전 주기를 이해하고 관리합니다.
+        </h2>
+
+        <p class="section-desc">
+          과제의 기획부터 평가와 후속관리까지, 연구개발 과정의 각 단계에서 필요한 업무를 경험했습니다.
+        </p>
+
+
+        <div class="lifecycle">
+
+          <div class="life-step">
+            <div class="life-number">STEP 01</div>
+            <div class="life-title">기획</div>
+            <div class="life-desc">
+              기술동향과 연구목표를 검토하고 과제 방향 및 RFP 기획
+            </div>
+          </div>
+
+          <div class="life-step">
+            <div class="life-number">STEP 02</div>
+            <div class="life-title">선정</div>
+            <div class="life-desc">
+              평가계획 수립, 평가위원 섭외 및 선정평가 운영
+            </div>
+          </div>
+
+          <div class="life-step">
+            <div class="life-number">STEP 03</div>
+            <div class="life-title">수행관리</div>
+            <div class="life-desc">
+              과제 진행현황 및 업무 히스토리 관리, 협약·연구비 검토
+            </div>
+          </div>
+
+          <div class="life-step">
+            <div class="life-number">STEP 04</div>
+            <div class="life-title">평가</div>
+            <div class="life-desc">
+              최종평가 준비, 결과 정리 및 관계기관 보고
+            </div>
+          </div>
+
+          <div class="life-step">
+            <div class="life-number">STEP 05</div>
+            <div class="life-title">성과·환류</div>
+            <div class="life-desc">
+              연구성과 관리 및 후속조치 모니터링을 통한 과제관리
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         핵심역량
+    ========================================================= -->
+    <section id="competency">
+
+      <div class="container">
+
+        <span class="section-label">
+          Core Competency
+        </span>
+
+        <div class="competency-intro">
+
+          <div>
+            <h2 class="section-title">
+              핵심역량
+            </h2>
+          </div>
+
+          <p>
+            연구기획 업무에 필요한 정보를 수집하고 구조화한 뒤,
+            사업과 과제의 실행으로 연결하는 역량을 갖추었습니다.
+          </p>
+
+        </div>
+
+
+        <div class="competency-grid">
+
+          <!-- 01 -->
+          <div class="competency-card">
+
+            <div class="competency-number">
+              01
+            </div>
+
+            <div class="competency-title">
+              과제관리
+            </div>
+
+            <div class="competency-text">
+              한국연구재단 과제관리 경험을 바탕으로
+              과제 진행현황과 업무 히스토리를 정리하고
+              향후 추진업무를 체계적으로 관리
+            </div>
+
+          </div>
+
+
+          <!-- 02 -->
+          <div class="competency-card">
+
+            <div class="competency-number">
+              02
+            </div>
+
+            <div class="competency-title">
+              기술기획
+            </div>
+
+            <div class="competency-text">
+              방사선 이종접합소재 RFP 기획 및 검토를 통해
+              기술목표와 연구내용을 구체화하고
+              성과기준을 검토
+            </div>
+
+          </div>
+
+
+          <!-- 03 -->
+          <div class="competency-card">
+
+            <div class="competency-number">
+              03
+            </div>
+
+            <div class="competency-title">
+              사업성 검토
+            </div>
+
+            <div class="competency-text">
+              미국 태양광 후보지의 계통·지가·환경·규제 등을
+              기준화하여 사업 후보지를 선별하고
+              사업 검토 자료로 구조화
+            </div>
+
+          </div>
+
+
+          <!-- 04 -->
+          <div class="competency-card">
+
+            <div class="competency-number">
+              04
+            </div>
+
+            <div class="competency-title">
+              글로벌 역량
+            </div>
+
+            <div class="competency-text">
+              미국 법안·규제 자료를 분석하고
+              사업검토에 활용할 수 있도록
+              영어문서로 작성하여 데이터베이스화
+            </div>
+
+          </div>
+
+
+          <!-- 05 -->
+          <div class="competency-card">
+
+            <div class="competency-number">
+              05
+            </div>
+
+            <div class="competency-title">
+              협업·커뮤니케이션
+            </div>
+
+            <div class="competency-text">
+              연구자·전문가·관계부서와의 업무 조율과
+              학생회 활동을 통해 다양한 이해관계자의
+              의견을 조율하고 전달
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- 연구기획 방식 -->
+        <div class="planning-flow">
+
+          <div class="flow-item">
+            <strong>정보수집</strong>
+            <span>기술·시장·정책 자료</span>
+          </div>
+
+          <div class="flow-item">
+            <strong>구조화</strong>
+            <span>핵심 정보 및 데이터 정리</span>
+          </div>
+
+          <div class="flow-item">
+            <strong>기준설정</strong>
+            <span>판단 기준 구체화</span>
+          </div>
+
+          <div class="flow-item">
+            <strong>기획·검토</strong>
+            <span>과제 및 사업 방향 도출</span>
+          </div>
+
+          <div class="flow-item">
+            <strong>관리·환류</strong>
+            <span>성과 및 후속조치 관리</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         대외활동
+    ========================================================= -->
+    <section id="activity" style="background:#f7f9fc;">
+
+      <div class="container">
+
+        <span class="section-label">
+          Activities
+        </span>
+
+        <h2 class="section-title">
+          대외활동
+        </h2>
+
+        <p class="section-desc">
+          전문적인 정보를 이해하고, 목적에 맞는 콘텐츠로 전달하는 경험을 쌓았습니다.
+        </p>
+
+
+        <div class="activity-grid">
+
+          <!-- 테트라팩 -->
+          <div class="activity-card">
+
+            <div class="activity-date">
+              2023.05 – 2023.07
+            </div>
+
+            <h3 class="activity-title">
+              테트라팩 에코 서포터즈
+            </h3>
+
+            <ul class="activity-list">
+
+              <li>
+                환경 보호 테마 UCC 영상 기획 및 편집 총괄, 팀 미션 우수상
+              </li>
+
+              <li>
+                인포그래픽 및 카드뉴스 기반 자원 재활용 캠페인 콘텐츠 제작
+              </li>
+
+              <li>
+                온·오프라인 홍보 콘텐츠 총 8개 제작
+              </li>
+
+            </ul>
+
+          </div>
+
+
+          <!-- 원자력연구원 -->
+          <div class="activity-card">
+
+            <div class="activity-date">
+              2022.05 – 2022.11
+            </div>
+
+            <h3 class="activity-title">
+              한국원자력연구원 안전문화 서포터즈
+            </h3>
+
+            <ul class="activity-list">
+
+              <li>
+                방사성 요오드 흡착제 연구논문 등 전문 기술자료·보도자료 기반 카드뉴스 6건 제작
+              </li>
+
+              <li>
+                원자력 안전 및 방사선 방호 관련 블로그 운영, 최종 활동 평가 최우수상
+              </li>
+
+              <li>
+                수출용신형연구로 등 대형 프로젝트 착공식 참여 및 현장 기반 홍보 콘텐츠 제작
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         LIG D&A 직무 연결
+    ========================================================= -->
+    <section class="fit-section" id="fit">
+
+      <div class="container">
+
+        <span class="section-label">
+          Job Fit
+        </span>
+
+        <h2 class="section-title">
+          연구기획 직무와 연결되는 역량
+        </h2>
+
+        <p class="section-desc">
+          기술을 이해하는 데서 그치지 않고, 정보를 구조화하여 과제의 기획과 실행으로 연결합니다.
+        </p>
+
+
+        <div class="fit-grid">
+
+          <div class="fit-card">
+            <strong>전문성</strong>
+            <span>
+              R&D 과제관리와 기술기획 경험을 바탕으로
+              기술적 내용을 과제 관점에서 해석
+            </span>
+          </div>
+
+          <div class="fit-card">
+            <strong>주도적 실행</strong>
+            <span>
+              업무 히스토리와 추진계획을 직접 정리하고
+              필요한 검토사항을 선제적으로 파악
+            </span>
+          </div>
+
+          <div class="fit-card">
+            <strong>사업 관점</strong>
+            <span>
+              신재생에너지 사업개발 경험을 통해
+              기술뿐 아니라 시장성과 사업성을 함께 검토
+            </span>
+          </div>
+
+          <div class="fit-card">
+            <strong>글로벌 정보 활용</strong>
+            <span>
+              해외 정책·시장 자료를 영어문서로 정리하고
+              사업검토에 활용할 수 있는 DB로 구축
+            </span>
+          </div>
+
+          <div class="fit-card">
+            <strong>협업과 책임</strong>
+            <span>
+              연구자·전문가·관계부서와 소통하며
+              공동의 목표를 달성하기 위한 업무 조율
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         마무리
+    ========================================================= -->
+    <section class="closing">
+
+      <div class="container">
+
+        <h2 class="closing-title">
+          복잡한 정보를 구조화하고,<br>
+          기술과 사업을 연결하는 연구기획 인재가 되겠습니다.
+        </h2>
+
+        <p class="closing-desc">
+          R&D 과제의 방향을 이해하고 실행까지 관리할 수 있는 연구기획 역량을 만들어가겠습니다.
+        </p>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =========================================================
+       SITE MAP
+  ========================================================= -->
+  <div class="sitemap-wrap">
+
+    <details class="sitemap">
+
+      <summary>
+        사이트맵
+      </summary>
+
+      <div class="sitemap-links">
+
+        <a href="#home">
+          홈
+        </a>
+
+        <a href="#career">
+          주요경력
+        </a>
+
+        <a href="#lifecycle">
+          R&D Lifecycle
+        </a>
+
+        <a href="#competency">
+          핵심역량
+        </a>
+
+        <a href="#activity">
+          대외활동
+        </a>
+
+        <a href="#fit">
+          직무 연결
+        </a>
+
+      </div>
+
+    </details>
+
+  </div>
+
+
+  <footer>
+    © 2026 SOHYUN PARK. R&D Research Planning Portfolio.
+  </footer>
+
+
+</body>
+</html>
